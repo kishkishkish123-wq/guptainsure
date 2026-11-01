@@ -52,7 +52,7 @@ export function Hero() {
               id="hero-title"
               className="mt-4 text-[2.5rem] font-[760] leading-[1.04] text-ink min-[400px]:text-[2.75rem] sm:text-[3.3rem] lg:text-[3.15rem] xl:text-[3.45rem]"
             >
-              Life Insurance <span className="sm:block">for a Brighter Future</span>
+              LIC Insurance Advice <span className="sm:block">for a Brighter Future</span>
             </motion.h1>
             <motion.p
               custom={2}

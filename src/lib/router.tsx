@@ -12,12 +12,13 @@ import {
 } from 'react'
 import { CLAIM_TOPICS, LEGAL_DOCS, PLANS, type ClaimTopicId, type LegalDocId, type PlanId } from '../data/content'
 import { scrollToSection } from './hooks'
+import { applyMeta, metaFor } from '../data/seo'
 
 /**
- * A tiny hash router (`#/plans/endowment`). It needs no server rules, so the site works from any
- * static host, including a single-file page. Each route change resets scroll, updates the
- * document title and moves focus to the page heading so keyboard and screen-reader users
- * land at the top of the new page.
+ * A tiny router. The live site uses real paths (`/plans/endowment`) so every page can be indexed.
+ * The single-file preview build uses hash links (`#/plans/endowment`) because it has no server.
+ * Each route change resets scroll, updates the head tags and moves focus to the page heading so
+ * keyboard and screen-reader users land at the top of the new page.
  */
 
 export type Route =
@@ -49,28 +50,7 @@ function parse(raw: string): { route: Route; section: string | null } {
   return { route, section }
 }
 
-const SUFFIX = 'Secure Sarthi'
-
-export function titleFor(route: Route): string {
-  switch (route.name) {
-    case 'home':
-      return `${SUFFIX}: Independent LIC insurance advisory`
-    case 'plans':
-      return `LIC plans compared | ${SUFFIX}`
-    case 'plan':
-      return `${PLANS.find((p) => p.id === route.id)!.title} | ${SUFFIX}`
-    case 'claims':
-      return `Claims | ${SUFFIX}`
-    case 'about':
-      return `About me | ${SUFFIX}`
-    case 'contact':
-      return `Contact us | ${SUFFIX}`
-    case 'legal':
-      return `${LEGAL_DOCS[route.doc].title} | ${SUFFIX}`
-    default:
-      return `Page not found | ${SUFFIX}`
-  }
-}
+const HASH_MODE = import.meta.env.MODE === 'artifact'
 
 function routeKey(route: Route) {
   if (route.name === 'plan') return `plan:${route.id}`
@@ -97,24 +77,34 @@ interface RouterValue {
 
 const RouterContext = createContext<RouterValue | null>(null)
 
-const readHash = () => (typeof window === 'undefined' ? '/' : window.location.hash.replace(/^#/, '') || '/')
+const readLoc = () => {
+  if (typeof window === 'undefined') return '/'
+  if (HASH_MODE) return window.location.hash.replace(/^#/, '') || '/'
+  const path = window.location.pathname.replace(/\/+$/, '') || '/'
+  return path + window.location.search
+}
 
 export function RouterProvider({ children }: { children: ReactNode }) {
-  const [loc, setLoc] = useState({ raw: readHash(), n: 0 })
+  const [loc, setLoc] = useState({ raw: readLoc(), n: 0 })
   const parsed = useMemo(() => parse(loc.raw), [loc.raw])
   const prevKey = useRef<string | null>(null)
 
   useEffect(() => {
-    const onHash = () => setLoc((l) => (l.raw === readHash() ? l : { raw: readHash(), n: l.n + 1 }))
-    window.addEventListener('hashchange', onHash)
-    return () => window.removeEventListener('hashchange', onHash)
+    const onChange = () => setLoc((l) => (l.raw === readLoc() ? l : { raw: readLoc(), n: l.n + 1 }))
+    const evt = HASH_MODE ? 'hashchange' : 'popstate'
+    window.addEventListener(evt, onChange)
+    return () => window.removeEventListener(evt, onChange)
   }, [])
 
   const navigate = useCallback((to: string) => {
     // Update our own state first so the page changes even where the address bar can't (sandboxed frames).
     setLoc((l) => ({ raw: to, n: l.n + 1 }))
     try {
-      if (window.location.hash !== `#${to}`) window.location.hash = to
+      if (HASH_MODE) {
+        if (window.location.hash !== `#${to}`) window.location.hash = to
+      } else if (window.location.pathname + window.location.search !== to) {
+        window.history.pushState(null, '', to)
+      }
     } catch {
       /* the in-memory state above is enough */
     }
@@ -122,7 +112,7 @@ export function RouterProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const { route, section } = parsed
-    document.title = titleFor(route)
+    applyMeta(metaFor(route))
     const key = routeKey(route)
     const first = prevKey.current === null
     const pageChanged = prevKey.current !== key
@@ -173,7 +163,7 @@ export function Link({ to, onClick, children, ...rest }: { to: string } & Anchor
     navigate(to)
   }
   return (
-    <a href={`#${to}`} onClick={handle} {...rest}>
+    <a href={HASH_MODE ? `#${to}` : to} onClick={handle} {...rest}>
       {children}
     </a>
   )
