@@ -54,7 +54,6 @@ function Row({
 }
 
 const QUICK: Record<CalcPlanId, number[]> = {
-  life: [25_00_000, 50_00_000, 1_00_00_000, 2_00_00_000],
   savings: [5_00_000, 10_00_000, 25_00_000, 50_00_000],
   child: [10_00_000, 25_00_000, 50_00_000, 1_00_00_000],
 }
@@ -71,7 +70,7 @@ export interface CalcInit {
 }
 
 export function usePremiumCalculator(init: CalcInit = {}) {
-  const [plan, setPlan] = useState<CalcPlanId>(init.plan ?? 'life')
+  const [plan, setPlan] = useState<CalcPlanId>(init.plan ?? 'savings')
   const [age, setAge] = useState(String(init.age ?? 25))
   const [term, setTerm] = useState(init.term ?? 20)
   const [amountText, setAmountText] = useState(formatGrouped(init.amount ?? 50_00_000))

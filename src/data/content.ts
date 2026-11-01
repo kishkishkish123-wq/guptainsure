@@ -18,7 +18,6 @@ import {
   PiggyBank,
   ShieldCheck,
   Sprout,
-  Umbrella,
   Users,
   type LucideIcon,
 } from 'lucide-react'
@@ -37,7 +36,7 @@ export const BRAND = {
     'Secure Sarthi is an independent LIC insurance advisory service. I am an authorized LIC agent, not an employee of LIC, and this website is not an official LIC platform.',
 }
 
-export type PlanId = 'term' | 'endowment' | 'moneyback' | 'pension' | 'child'
+export type PlanId = 'endowment' | 'moneyback' | 'pension' | 'child'
 
 export interface Plan {
   id: PlanId
@@ -55,21 +54,6 @@ export interface Plan {
 }
 
 export const PLANS: Plan[] = [
-  {
-    id: 'term',
-    title: 'Term Insurance',
-    short: 'Pure protection for your loved ones.',
-    icon: Umbrella,
-    tint: 'bg-pastel-blue',
-    iconTint: 'bg-[#dbe8ff] text-brand',
-    calcPlan: 'life',
-    summary:
-      'A large life cover for a small, fixed premium. If something happens to you during the policy term, your family receives the sum assured.',
-    features: ['High cover at the lowest cost of any life plan', 'Level or increasing cover', 'Lump sum or instalment payout to your family'],
-    goodFor: 'Earning members with dependants or a home loan',
-    entryAge: '18 to 65 years',
-    term: '10 to 40 years',
-  },
   {
     id: 'endowment',
     title: 'Endowment Plans',

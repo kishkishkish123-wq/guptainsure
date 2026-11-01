@@ -7,7 +7,6 @@ const files = import.meta.glob<string>('../assets/img/*.webp', { eager: true, qu
 
 export type ImageName =
   | 'hero'
-  | 'term'
   | 'endowment'
   | 'moneyback'
   | 'pension'

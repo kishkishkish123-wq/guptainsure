@@ -18,7 +18,7 @@ interface Item {
   run: () => void
 }
 
-const SUGGESTIONS = ['term', 'pension', 'claim', 'revival']
+const SUGGESTIONS = ['endowment', 'pension', 'claim', 'revival']
 
 export function SearchPalette() {
   const { searchOpen, setSearchOpen } = useUI()

@@ -27,12 +27,12 @@ export function PlansIndex() {
         breadcrumbs={[{ label: 'Home', to: '/' }, { label: 'Plans' }]}
         eyebrow="Our products"
         title="Find the plan that fits your goal"
-        lead="Five LIC plans, one for each stage of life. Start with what you want to achieve, or compare them side by side."
+        lead="Four LIC plans, one for each stage of life. Start with what you want to achieve, or compare them side by side."
       />
 
       <Band className="!pt-4">
         <SectionHeading title="What do you want to do?" />
-        <StaggerUl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <StaggerUl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {GOALS.map((g) => {
             const plan = PLANS.find((p) => p.id === g.plan)!
             return (
@@ -90,7 +90,7 @@ export function PlansIndex() {
               </article>
             </StaggerLi>
           ))}
-          <StaggerLi className="flex">
+          <StaggerLi className="flex md:col-span-2 xl:col-span-2">
             <div className="flex w-full flex-col justify-center rounded-[28px] bg-night p-7 text-white shadow-card">
               <h3 className="font-display text-[1.5rem] font-[740] leading-tight">Not sure which plan fits?</h3>
               <p className="mt-3 text-[1rem] leading-relaxed text-white/75">
@@ -111,7 +111,7 @@ export function PlansIndex() {
         <FadeUp className="mt-8 overflow-x-auto rounded-[22px] border border-line" >
         <div tabIndex={0} role="region" aria-label="Plan comparison table">
           <table className="w-full min-w-[820px] border-collapse text-left text-[0.95rem]">
-            <caption className="sr-only">Comparison of the five LIC plans I advise on</caption>
+            <caption className="sr-only">Comparison of the four LIC plans I advise on</caption>
             <thead>
               <tr className="bg-mist">
                 <td className="w-[150px] p-4" />

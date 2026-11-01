@@ -103,7 +103,7 @@ export const TESTIMONIALS: Array<{ quote: string; name: string; place?: string }
 
 /** "I want to…" goals on the home page. Each points to the plans that fit. */
 export const GOAL_TABS: Array<{ id: string; label: string; line: string; plans: PlanId[] }> = [
-  { id: 'family', label: 'Protect my family', line: 'Make sure the people who depend on you are looked after if you are not there.', plans: ['term', 'endowment'] },
+  { id: 'family', label: 'Protect my family', line: 'Make sure the people who depend on you are looked after if you are not there.', plans: ['endowment', 'moneyback'] },
   { id: 'savings', label: 'Save for a goal', line: 'Build a fund for a house, a wedding or any date you can plan for.', plans: ['endowment', 'moneyback'] },
   { id: 'child', label: 'Child’s future', line: 'Start early for education and milestones, with cover for the parent.', plans: ['child', 'endowment'] },
   { id: 'retire', label: 'Retirement income', line: 'Turn what you have saved into a regular income for life.', plans: ['pension'] },

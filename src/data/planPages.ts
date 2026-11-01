@@ -5,7 +5,6 @@ import {
   Coins,
   GraduationCap,
   HeartHandshake,
-  HeartPulse,
   Landmark,
   Lock,
   Percent,
@@ -14,7 +13,6 @@ import {
   ShieldCheck,
   Sun,
   TrendingUp,
-  Users,
   Wallet,
   type LucideIcon,
 } from 'lucide-react'
@@ -70,154 +68,6 @@ export interface PlanDetail {
 }
 
 export const PLAN_DETAILS: Record<PlanId, PlanDetail> = {
-  /* ---------------------------------------------------------------- term */
-  term: {
-    id: 'term',
-    product: 'LIC’s Tech Term',
-    planNo: 'Plan 954',
-    lead: 'A pure-protection plan bought online. If you are no longer there to provide, your family receives a large sum, for a premium that stays low because there is no savings component.',
-    facts: [
-      { label: 'Entry age', value: '18–65 years' },
-      { label: 'Policy term', value: '10–40 years', note: 'Cover ends by age 80' },
-      { label: 'Minimum cover', value: '₹50 lakh', note: 'No upper limit' },
-      { label: 'Paying for it', value: 'Single, limited or regular' },
-    ],
-    benefits: [
-      {
-        icon: ShieldCheck,
-        title: 'High cover for a low premium',
-        body: 'Every rupee of premium buys protection, which is why term cover is the most affordable way to protect a large responsibility.',
-      },
-      {
-        icon: TrendingUp,
-        title: 'Level or increasing cover',
-        body: 'Keep the cover the same throughout, or choose increasing cover that rises 10% a year from year 6 until it doubles in year 15.',
-      },
-      {
-        icon: Wallet,
-        title: 'Lump sum or instalments',
-        body: 'Your family receives the benefit as one payment. You can choose instalments over five years instead, but the choice cannot be changed later.',
-      },
-      {
-        icon: CalendarClock,
-        title: 'Pay once or over time',
-        body: 'Choose a single premium, a limited payment period or regular payments. Premiums can be paid yearly or half-yearly.',
-      },
-      {
-        icon: Users,
-        title: 'Priced to you',
-        body: 'Your premium depends on age, gender, policy term, cover amount and whether you smoke, so a healthy non-smoker pays less.',
-      },
-      {
-        icon: HeartPulse,
-        title: 'Optional accident rider',
-        body: 'For a small extra premium, an accident benefit rider adds a further amount if death is caused by an accident.',
-      },
-    ],
-    steps: [
-      { title: 'Decide your cover', body: 'A common starting point is 10 to 15 times your yearly income, plus loans, minus savings your family could draw on.' },
-      { title: 'We go through the choices', body: 'I help you pick level or increasing cover, the payment style and the term, and compare them with your budget.' },
-      { title: 'Apply online', body: 'This plan is sold online. I stay with you through the form so every answer is complete and accurate.' },
-      { title: 'Cover begins', body: 'After acceptance and the first premium, your cover starts. Keep the policy and nominee details safe and share them with your family.' },
-    ],
-    optionGroups: [
-      {
-        title: 'Cover style',
-        intro: 'Pick how the amount of cover behaves over the years.',
-        items: [
-          { name: 'Level cover', detail: 'The cover amount stays the same for the whole term. Best when your loans and goals are fixed.' },
-          {
-            name: 'Increasing cover',
-            detail: 'Flat for 5 years, then rises 10% of the basic amount each year until it is double in year 15, then stays level.',
-            tag: 'Keeps pace with costs',
-          },
-        ],
-      },
-      {
-        title: 'How your family is paid',
-        items: [
-          { name: 'Lump sum', detail: 'The whole amount in one payment. This is the default.' },
-          { name: 'Instalments over 5 years', detail: 'Spread the payout to give your family a steady income. Chosen at the start.' },
-        ],
-      },
-      {
-        title: 'How you pay',
-        items: [
-          { name: 'Regular pay', detail: 'Pay every year of the term.' },
-          { name: 'Limited pay', detail: 'Pay for a shorter period and stay covered for the full term.' },
-          { name: 'Single pay', detail: 'One payment at the start and nothing more to remember.' },
-        ],
-      },
-    ],
-    terms: [
-      ['Plan type', 'Non-linked, non-participating, pure risk premium plan'],
-      ['Entry age', '18 to 65 years'],
-      ['Maximum age at end of term', '80 years'],
-      ['Policy term', '10 to 40 years'],
-      ['Minimum cover', '₹50 lakh'],
-      ['Maximum cover', 'No upper limit, subject to underwriting'],
-      ['Premium modes', 'Yearly or half-yearly (regular and limited pay)'],
-      ['Maturity benefit', 'None. This is a pure protection plan'],
-      ['Sold', 'Online'],
-    ],
-    riders: [
-      {
-        name: 'Accident Benefit Rider',
-        body: 'Pays an additional amount if death is caused by an accident. It costs an extra premium and comes with its own conditions.',
-      },
-    ],
-    suits: [
-      'You have dependants who rely on your income',
-      'You have a home loan or education loan to clear',
-      'You want the largest cover for the lowest cost',
-      'You are comfortable applying online with some help',
-    ],
-    notFor: [
-      'You want a payout if you outlive the term (look at endowment or money back)',
-      'You need less than ₹50 lakh of cover',
-    ],
-    example: {
-      name: 'A sample case',
-      text: 'Aarav is 30, salaried, with a home loan and a young family. He picks ₹1 crore of level cover until age 60. This is an illustrative estimate, not LIC’s rate.',
-      calc: { age: 30, term: 30, amount: 1_00_00_000 },
-      closing: 'If Aarav passes away during the 30 years, his family receives ₹1 crore. If he does not, the policy ends and nothing is returned, which is why the premium is low. Ask me for the exact quotation.',
-    },
-    tax: [
-      'Premiums paid may qualify for a deduction, and the death benefit is generally tax-free for the nominee, subject to the income-tax law in force at the time.',
-      'Tax rules change and depend on your circumstances and chosen tax regime. Check with a tax adviser before relying on any benefit.',
-    ],
-    notes: [
-      'Hiding or misstating health, habit or income details can lead to a claim being rejected. Disclose everything you are asked.',
-      'Premiums are not returned if you outlive the term, because the plan has no savings component.',
-      'Smokers pay higher premiums. Tell the truth about tobacco use when you apply.',
-      'Always read the official brochure and policy document, which are the final word on terms and exclusions.',
-    ],
-    faqs: [
-      {
-        q: 'How much cover should I buy?',
-        a: 'A common starting point is 10 to 15 times your yearly income, plus any loans, minus the savings your family could draw on. I can work out the number with you.',
-      },
-      {
-        q: 'What happens if I outlive the term?',
-        a: 'The policy ends. Term insurance pays only if the life assured passes away during the term, which is why the premium is low.',
-      },
-      {
-        q: 'What is the difference between level and increasing cover?',
-        a: 'Level cover stays the same throughout. Increasing cover steps up from year 6 until it doubles in year 15, so it keeps pace with rising costs. It costs more for the same starting amount.',
-      },
-      {
-        q: 'Why is this plan bought online?',
-        a: 'It is offered only through LIC’s online channel, which keeps costs and premiums down. I guide you through the choices and the form, and I am your contact after you buy.',
-      },
-      {
-        q: 'Does smoking change my premium?',
-        a: 'Yes. Smokers pay higher rates, and the premium also depends on age, gender, term and the cover you choose.',
-      },
-    ],
-    related: ['endowment', 'pension'],
-    compare: { pays: 'On death during the term', maturity: 'None', growth: 'None', risk: 'None', cover: 'Highest' },
-  },
-
   /* ----------------------------------------------------------- endowment */
   endowment: {
     id: 'endowment',
@@ -360,7 +210,7 @@ export const PLAN_DETAILS: Record<PlanId, PlanDetail> = {
         a: 'Yes. You can choose instalments over 5, 10 or 15 years instead of a lump sum.',
       },
     ],
-    related: ['moneyback', 'term'],
+    related: ['moneyback', 'child'],
     compare: { pays: 'At maturity, or on death', maturity: 'Sum assured + bonuses', growth: 'Modest, bonus-linked', risk: 'Low', cover: 'Moderate' },
   },
 
@@ -633,7 +483,7 @@ export const PLAN_DETAILS: Record<PlanId, PlanDetail> = {
         a: 'A lower minimum purchase price applies when buying for a dependant with a disability. Ask me for the details.',
       },
     ],
-    related: ['endowment', 'term'],
+    related: ['endowment', 'child'],
     compare: { pays: 'Regular income, starting immediately', maturity: 'An annuity (income)', growth: 'Fixed at purchase', risk: 'Low', cover: 'Limited' },
   },
 
@@ -777,7 +627,6 @@ export const PLAN_DETAILS: Record<PlanId, PlanDetail> = {
 
 /** Quick "what do you want to do?" chooser for the plans page. */
 export const GOALS: Array<{ goal: string; plan: PlanId }> = [
-  { goal: 'Protect my family’s income', plan: 'term' },
   { goal: 'Save for a goal with a date', plan: 'endowment' },
   { goal: 'Get cash back along the way', plan: 'moneyback' },
   { goal: 'Turn savings into income', plan: 'pension' },

@@ -35,7 +35,7 @@ function OptionCard({ item }: { item: OptionItem }) {
 function PlanCalculator({ id }: { id: PlanId }) {
   const plan = PLANS.find((p) => p.id === id)!
   const d = PLAN_DETAILS[id]
-  const calc = usePremiumCalculator({ plan: plan.calcPlan ?? 'life', ...d.example.calc })
+  const calc = usePremiumCalculator({ plan: plan.calcPlan ?? 'savings', ...d.example.calc })
   return (
     <div className="calc-banner relative isolate overflow-hidden rounded-[30px] p-5 text-white shadow-panel sm:p-8 lg:p-10">
       <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:items-center">
@@ -223,7 +223,7 @@ export function PlanPage({ id }: { id: PlanId }) {
 
       <Band id="plan-calculator">
         <SectionHeading
-          eyebrow={id === 'term' || id === 'endowment' || id === 'child' ? 'Try it' : 'Illustration'}
+          eyebrow={id === 'endowment' || id === 'child' ? 'Try it' : 'Illustration'}
           title={id === 'moneyback' ? 'See what comes back, and when' : id === 'pension' ? 'Estimate your income' : 'Estimate your premium'}
           intro={id === 'moneyback' || id === 'pension' ? d.example.text : undefined}
         />

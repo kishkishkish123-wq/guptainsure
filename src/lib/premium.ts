@@ -3,12 +3,11 @@ import { formatINR, inWords } from './inr'
 /**
  * ILLUSTRATIVE premium model.
  *
- * The life-cover base rate is calibrated to one real LIC quote (age 26, ₹50L, 20 yrs = ₹4,550/yr). Other plans are rougher.
  * These formulas give a rough sense of scale. They are not LIC's rates and not a quotation,
  * and the UI labels every result as an estimate.
  */
 
-export type CalcPlanId = 'life' | 'savings' | 'child'
+export type CalcPlanId = 'savings' | 'child'
 
 export interface CalcPlan {
   id: CalcPlanId
@@ -25,18 +24,6 @@ export interface CalcPlan {
 }
 
 export const CALC_PLANS: Record<CalcPlanId, CalcPlan> = {
-  life: {
-    id: 'life',
-    label: 'Life Cover',
-    ageLabel: 'Age',
-    amountLabel: 'Sum Assured',
-    ageMin: 18,
-    ageMax: 65,
-    maxEndAge: 85,
-    terms: [10, 15, 20, 25, 30, 35, 40],
-    amountMin: 50_00_000,
-    amountMax: 20_00_00_000,
-  },
   savings: {
     id: 'savings',
     label: 'Savings',
@@ -63,7 +50,7 @@ export const CALC_PLANS: Record<CalcPlanId, CalcPlan> = {
   },
 }
 
-export const CALC_ORDER: CalcPlanId[] = ['life', 'savings', 'child']
+export const CALC_ORDER: CalcPlanId[] = ['savings', 'child']
 
 export interface CalcInput {
   plan: CalcPlanId
@@ -112,12 +99,6 @@ export function estimate(plan: CalcPlanId, age: number, term: number, amount: nu
   let annual: number
   let note: string
   switch (plan) {
-    case 'life': {
-      const ratePerThousand = 0.852 * Math.exp(0.066 * (age - 25)) * (1 + 0.011 * (term - 20))
-      annual = (amount / 1000) * ratePerThousand
-      note = 'Pure protection: no payout if you outlive the term.'
-      break
-    }
     case 'savings': {
       const mortality = (amount / 1000) * 0.95 * Math.exp(0.058 * (age - 30))
       annual = (amount / term) * 0.93 + mortality

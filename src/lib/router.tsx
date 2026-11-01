@@ -14,7 +14,7 @@ import { CLAIM_TOPICS, LEGAL_DOCS, PLANS, type ClaimTopicId, type LegalDocId, ty
 import { scrollToSection } from './hooks'
 
 /**
- * A tiny hash router (`#/plans/term`). It needs no server rules, so the site works from any
+ * A tiny hash router (`#/plans/endowment`). It needs no server rules, so the site works from any
  * static host, including a single-file page. Each route change resets scroll, updates the
  * document title and moves focus to the page heading so keyboard and screen-reader users
  * land at the top of the new page.

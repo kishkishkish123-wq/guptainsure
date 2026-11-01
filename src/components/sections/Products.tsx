@@ -82,7 +82,7 @@ export function Products() {
             whileInView="shown"
             viewport={{ once: true, amount: 0.15 }}
             aria-label="Insurance plans"
-            className="grid gap-3 sm:-mx-6 sm:flex sm:snap-x sm:snap-mandatory sm:gap-4 sm:overflow-x-auto sm:px-6 sm:py-3 sm:[scroll-padding-inline:24px] lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0 lg:py-2 no-scrollbar"
+            className="grid gap-3 sm:-mx-6 sm:flex sm:snap-x sm:snap-mandatory sm:gap-4 sm:overflow-x-auto sm:px-6 sm:py-3 sm:[scroll-padding-inline:24px] lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:py-2 no-scrollbar"
           >
             {PLANS.map((plan) => (
               <ProductCard key={plan.id} plan={plan} />
